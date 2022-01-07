@@ -11,7 +11,7 @@ public class RevServiceApplication {
 
     @GetMapping
     public String getInfo(){
-        return "rev-service";
+        return "this is rev-service";
     }
 
     public static void main(String[] args) {
