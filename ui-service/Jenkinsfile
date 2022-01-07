@@ -43,7 +43,7 @@ pipeline {
                         s3Upload(
                             bucket:"nagcloudlab-ui-service", 
                             path:"."
-                            file:'dist/ui-service', 
+                            file:'dist/ui-service' 
                             )
                     }
                   }
