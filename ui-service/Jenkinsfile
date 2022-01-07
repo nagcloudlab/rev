@@ -42,7 +42,8 @@ pipeline {
                     withAWS(region:'ap-south-1',credentials:'aws-s3-upload') {
                         s3Upload(
                             bucket:"nagcloudlab-ui-service", 
-                            includePathPattern:'./dist/ui-service/**', 
+                            path:"."
+                            file:'dist/ui-service', 
                             )
                     }
                   }
