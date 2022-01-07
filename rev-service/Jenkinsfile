@@ -23,22 +23,30 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-                sh './mvnw compile'
+                dir('rev-service'){
+                    sh './mvnw compile'
+                }
             }
         }
         stage('Test') {
             steps {
-                sh './mvnw test'
+                dir('rev-service'){
+                    sh './mvnw test'
+                }
             }
         }
         stage('Package') {
             steps {
-                sh './mvnw package'
+                dir('rev-service'){
+                    sh './mvnw package'
+                }
             }
         }
         stage('Build Docker image') {
             steps {
-                sh './mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=nagabhushanamn/rev-service'
+                dir('rev-service'){
+                    sh './mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=nagabhushanamn/rev-service'
+                }
             }
         }
         // stage('Push Docker image') {
