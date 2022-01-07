@@ -1,0 +1,54 @@
+
+// CI
+
+    // pull the code
+    // compile
+    // test
+    // package
+    // create docker image
+    // push docker into registry ( public | private )
+
+// CD
+
+    // pull the image
+    // deploy
+
+
+//------------------------------------------------------    
+pipeline {
+    agent any
+    triggers {
+        pollSCM '* * * * *'
+    }
+    stages {
+        stage('Compile') {
+            steps {
+                sh './mvnw compile'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './mvnw test'
+            }
+        }
+        stage('Package') {
+            steps {
+                sh './mvnw package'
+            }
+        }
+        stage('Build Docker image') {
+            steps {
+                sh './mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=nagabhushanamn/rev-service'
+            }
+        }
+        // stage('Push Docker image') {
+        //     environment {
+        //         DOCKER_HUB_LOGIN = credentials('docker-hub')
+        //     }
+        //     steps {
+        //         sh 'docker login --username=$DOCKER_HUB_LOGIN_USR --password=$DOCKER_HUB_LOGIN_PSW'
+        //         sh './gradlew dockerPush'
+        //     }
+        // }
+    }
+}
