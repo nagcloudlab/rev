@@ -72,5 +72,5 @@ pipeline {
     //     always {
     //         emailext body: 'Jenkisn build status', subject: 'TEST', to: 'nagcloudlab@gmail.com'
     //     }
-    // }
+    }
 }
