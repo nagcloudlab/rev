@@ -40,11 +40,7 @@ pipeline {
               steps {
                   dir("ui-service"){
                     withAWS(region:'ap-south-1',credentials:'aws-s3-upload') {
-                        s3Upload(
-                            bucket:"nagcloudlab-ui-service", 
-                            path:"."
-                            file:'dist/ui-service' 
-                            )
+                       s3Upload(file:'dist/ui-service', bucket:'nagcloudlab-ui-service', path:'.')
                     }
                   }
               }
